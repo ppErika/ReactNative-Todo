@@ -29,7 +29,7 @@ export default function App() {
           backgroundColor={theme.background}
         />
         <Title>TODO List</Title>
-        <Input />
+        <Input placeholder="+ Add a Task" />
       </Container>
     </ThemeProvider>
   );
