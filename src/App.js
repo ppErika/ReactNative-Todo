@@ -24,7 +24,10 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Container>
         <Title>TODO List</Title>
-        <StatusBar style="auto" />
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor={theme.background}
+        />
       </Container>
     </ThemeProvider>
   );
