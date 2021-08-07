@@ -29,11 +29,6 @@ const List = styled.ScrollView`
 `;
 
 export default function App() {
-  //Hide Splash screen on app load.
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
-
   const width = Dimensions.get('window').width;
   const [tasks, setTasks] = useState({});
 
@@ -54,6 +49,12 @@ export default function App() {
       //
     }
   };
+
+  //Hide Splash screen on app load.
+  useEffect(() => {
+    getData();
+    SplashScreen.hide();
+  }, []);
 
   const [newTask, setNewTask] = useState('');
 
