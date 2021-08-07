@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, Dimensions} from 'react-native';
 import styled, {ThemeProvider} from 'styled-components/native';
-import Input from './components/Input';
 import {theme} from './theme';
-import IconButton from './components/IconButton';
-import {icons} from './icons';
+import Input from './components/Input';
+import Task from './components/Task';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -22,7 +21,13 @@ const Title = styled.Text`
   padding: 0 20px;
 `;
 
+const List = styled.ScrollView`
+  flex: 1;
+  width: ${({width}) => width - 40}px;
+`;
+
 export default function App() {
+  const width = Dimensions.get('window').width;
   const [newTask, setNewTask] = useState('');
 
   const addTask = () => {
@@ -43,10 +48,24 @@ export default function App() {
           onChangeText={(text) => setNewTask(text)}
           onSubmitEditing={addTask}
         />
-        <IconButton icon={icons.check} onPress={() => alert('check')} />
-        <IconButton icon={icons.uncheck} onPress={() => alert('uncheck')} />
-        <IconButton icon={icons.edit} onPress={() => alert('edit')} />
-        <IconButton icon={icons.delete} onPress={() => alert('delete')} />
+        <List width={width}>
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+        </List>
       </Container>
     </ThemeProvider>
   );
