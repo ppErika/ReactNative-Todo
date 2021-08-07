@@ -28,11 +28,26 @@ const List = styled.ScrollView`
 
 export default function App() {
   const width = Dimensions.get('window').width;
+
+  const tempData = {
+    1: {id: '1', text: 'ReactNative', completed: false},
+    2: {id: '2', text: 'React', completed: false},
+    3: {id: '3', text: 'Java', completed: false},
+    4: {id: '4', text: 'Kotlin', completed: true},
+  };
+  const [tasks, setTasks] = useState(tempData);
   const [newTask, setNewTask] = useState('');
 
   const addTask = () => {
-    alert(newTask);
+    if (newTask.length < 1) {
+      return;
+    }
+    const ID = Date.now().toString();
+    const newTaskObject = {
+      [ID]: {id: ID, text: newTask, completed: false},
+    };
     setNewTask('');
+    setTasks({...tasks, ...newTaskObject});
   };
   return (
     <ThemeProvider theme={theme}>
@@ -49,22 +64,11 @@ export default function App() {
           onSubmitEditing={addTask}
         />
         <List width={width}>
-          <Task text="React Native" />
-          <Task text="React Native" />
-          <Task text="React Native" />
-          <Task text="React Native" />
-          <Task text="React Native" />
-          <Task text="React Native" />
-          <Task text="React Native" />
-          <Task text="React Native" />
-          <Task text="React Native" />
-          <Task text="React Native" />
-          <Task text="React Native" />
-          <Task text="React Native" />
-          <Task text="React Native" />
-          <Task text="React Native" />
-          <Task text="React Native" />
-          <Task text="React Native" />
+          {Object.values(tasks)
+            .reverse()
+            .map((item) => (
+              <Task key={item.id} text={item.text} />
+            ))}
         </List>
       </Container>
     </ThemeProvider>
