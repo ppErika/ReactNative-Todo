@@ -62,6 +62,12 @@ export default function App() {
     setTasks(currentTasks);
   };
 
+  const updateTask = (item) => {
+    const currentTasks = Object.assign({}, tasks);
+    currentTasks[item.id] = item;
+    setTasks(currentTasks);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -75,6 +81,7 @@ export default function App() {
           value={newTask}
           onChangeText={(text) => setNewTask(text)}
           onSubmitEditing={addTask}
+          onBlur={() => setNewTask('')}
         />
         <List width={width}>
           {Object.values(tasks)
@@ -85,6 +92,7 @@ export default function App() {
                 item={item}
                 deleteTask={deleteTask}
                 toggleTask={toggleTask}
+                updateTask={updateTask}
               />
             ))}
         </List>

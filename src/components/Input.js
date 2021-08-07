@@ -17,7 +17,7 @@ const StyledInput = styled.TextInput.attrs(({theme}) => ({
   color: ${({theme}) => theme.text};
 `;
 
-const Input = ({placeholder, value, onChangeText, onSubmitEditing}) => {
+const Input = ({placeholder, value, onChangeText, onSubmitEditing, onBlur}) => {
   // 사용하는 기기의 화면의 크기(width)를 가져옴
   //   const width = Dimensions.get('window').width;
   const width = useWindowDimensions().width;
@@ -28,6 +28,7 @@ const Input = ({placeholder, value, onChangeText, onSubmitEditing}) => {
       value={value}
       onChangeText={onChangeText}
       onSubmitEditing={onSubmitEditing}
+      onBlur={onBlur}
       maxLength={50}
       //  대문자로 시작 안하기
       autoCapitalize="none"
@@ -44,6 +45,7 @@ Input.propTypes = {
   value: PropTypes.string.isRequired,
   onChangeText: PropTypes.func.isRequired,
   onSubmitEditing: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
 };
 
 export default Input;
